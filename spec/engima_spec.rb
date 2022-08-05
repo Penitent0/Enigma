@@ -14,4 +14,4 @@ RSpec.describe Enigma do
       expect(enigma.date_to_string.length).to eq(6)
     end
   end
-end
+endgit 
