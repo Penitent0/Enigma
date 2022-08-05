@@ -13,5 +13,13 @@ RSpec.describe Enigma do
       expect(enigma.date_to_string).to be_a(String)
       expect(enigma.date_to_string.length).to eq(6)
     end
+
+    it 'has random key generator' do
+      expect(enigma.key_generator).to be_a(String)
+      expect(enigma.key_generator.length).to eq(5)
+      key_sum = enigma.key_generator.split('').sum { |num| num.to_i }
+      expect(key_sum).to be <= 45
+      expect(key_sum).to be >= 0
+    end
   end
-endgit 
+end
