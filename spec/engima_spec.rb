@@ -40,10 +40,15 @@ RSpec.describe Enigma do
       expect(enigma.alphabet_generator).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
     end
 
-    xit 'has encrypt method' do
+    it 'has encrypt method' do
       expect(enigma.encrypt("hello world", "02715", "040895")).to be_a(Hash)
       expect(enigma.encrypt("hello world", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
-      #add tests of optional args here
+      expect(enigma.encrypt("HELLO WORLD", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
+      expect(enigma.encrypt("hello world!?$", "02715", "040895")).to eq({encryption: "keder ohulw!?$", key: "02715", date: "040895"})
+      expect(enigma.encrypt("", "02715", "040895")).to eq("Message must contain content")
+      allow(enigma).to receive(:encrypt).and_call_original
+      allow(enigma).to receive(:encrypt).with("hello world").and_return({encryption: "encrypted message", key: "generated_key", date: enigma.date_to_string})
+      expect(enigma.encrypt("hello world")).to eq({encryption: "encrypted message", key: "generated_key", date: enigma.date_to_string})
     end
   end
 end
