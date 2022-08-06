@@ -15,4 +15,8 @@ class Enigma
   def date_to_string
     @date.strftime('%d/%m/%y').gsub('/', '')
   end
+
+  def encrypt(message, key, date)
+
+  end
 end
