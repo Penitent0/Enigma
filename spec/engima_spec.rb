@@ -25,6 +25,8 @@ RSpec.describe Enigma do
     it 'has message format method' do
       expect(enigma.message_format("hello world")).to be_a(Array)
       expect(enigma.message_format("hello world")).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
+      expect(enigma.message_format("HELLO WORLD")).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
+      expect(enigma.message_format("test message")).to eq(["t", "e", "s", "t", " ", "m", "e", "s", "s", "a", "g", "e"])
     end
 
     it 'has offset generator method' do
