@@ -13,6 +13,6 @@ class Enigma
   end
 
   def date_to_string
-    @date.strftime("%D").gsub('/', '')
+    @date.strftime('%d/%m/%y').gsub('/', '')
   end
 end
