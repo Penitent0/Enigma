@@ -54,5 +54,16 @@ RSpec.describe Enigma do
       allow(enigma).to receive(:encrypt).with("hello world").and_return({encryption: "encrypted message", key: "generated_key", date: enigma.date_to_string})
       expect(enigma.encrypt("hello world")).to eq({encryption: "encrypted message", key: "generated_key", date: enigma.date_to_string})
     end
+
+    it 'has decrypt method' do 
+      expect(enigma.decrypt("keder ohulw", "02715", "040895")).to be_a(Hash)
+      expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
+      expect(enigma.decrypt("KEDER OHULW", "02715", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
+      expect(enigma.decrypt("keder ohulw!?$", "02715", "040895")).to eq({decryption: "hello world!?$", key: "02715", date: "040895"})
+      expect(enigma.decrypt("keder ohulw", "0271512345", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
+      allow(enigma).to receive(:decrypt).and_call_original
+      allow(enigma).to receive(:decrypt).with("keder ohulw", "02715").and_return({decryption: "decrypted message", key: "02715", date: enigma.date_to_string})
+      expect(enigma.decrypt("keder ohulw", "02715")).to eq({decryption: "decrypted message", key: "02715", date: enigma.date_to_string})
+    end
   end
 end
