@@ -47,6 +47,7 @@ RSpec.describe Enigma do
       expect(enigma.encrypt("hello world", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
       expect(enigma.encrypt("HELLO WORLD", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
       expect(enigma.encrypt("hello world!?$", "02715", "040895")).to eq({encryption: "keder ohulw!?$", key: "02715", date: "040895"})
+      expect(enigma.encrypt("hello world", "1", "040895")).to eq({encryption: "ienrp yuslf", key: "00001", date: "040895"})
       expect(enigma.encrypt("", "02715", "040895")).to eq("Message must contain content")
       allow(enigma).to receive(:encrypt).and_call_original
       allow(enigma).to receive(:encrypt).with("hello world").and_return({encryption: "encrypted message", key: "generated_key", date: enigma.date_to_string})

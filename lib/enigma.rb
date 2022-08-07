@@ -36,6 +36,9 @@ class Enigma
     if message.empty? == true
       return "Message must contain content"
     end
+    if key.length < 5 
+      key = key.rjust(5, '0')
+    end
     offset_enumerator = offset_generator(key, date).cycle
     letter_array = message_format(message)
     encrypted_message = ""
