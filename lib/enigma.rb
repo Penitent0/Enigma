@@ -36,10 +36,7 @@ class Enigma
     if message.empty? == true
       return "Message must contain content"
     end
-    if key.length < 5 
-      key = key.rjust(5, '0')
-    end
-    offset_enumerator = offset_generator(key, date).cycle
+    offset_enumerator = offset_generator(key_helper(key), date).cycle
     letter_array = message_format(message)
     encrypted_message = ""
     letter_array.each do |letter|
@@ -49,6 +46,10 @@ class Enigma
         encrypted_message << alphabet_generator.rotate(alphabet_generator.find_index(letter) + offset_enumerator.next).first
       end
     end
-    encryption_hash = {encryption: encrypted_message, key: key, date: date}
+    encryption_hash = {encryption: encrypted_message, key: key_helper(key), date: date}
+  end
+
+  def key_helper(key)
+    key.rjust(5, '0')[0..4]
   end
 end
