@@ -43,6 +43,11 @@ RSpec.describe Encryptor do
       expect(encryptor.offset_generator("02715", "040895")[3]).to eq(20)
     end
 
+    it 'extends encryptable key helper method' do
+      expect(encryptor.key_helper("123456")).to eq("12345")
+      expect(encryptor.key_helper("1234")).to eq("01234")
+    end
+
     it 'has details message, key, date' do
       expect(encryptor.message).to eq("hello world")
       expect(encryptor.key).to eq("02715")
