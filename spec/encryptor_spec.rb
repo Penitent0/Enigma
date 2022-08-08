@@ -7,12 +7,18 @@ RSpec.describe Encryptor do
       expect(encryptor).to be_a(Encryptor)
     end
 
-    it 'extends encryptable helper module methods' do
+    it 'extends encryptable key generator' do
       expect(encryptor.key_generator).to be_a(String)
       expect(encryptor.key_generator.length).to eq(5)
       key_sum = encryptor.key_generator.split('').sum { |num| num.to_i }
       expect(key_sum).to be <= 45
       expect(key_sum).to be >= 0
+    end
+
+    it 'extends encryptable date to string method' do
+      expect(encryptor.date_to_string).to be_a(String)
+      expect(encryptor.date_to_string.length).to eq(6)
+      expect(encryptor.date_to_string).to eq(Time.now.strftime('%d/%m/%y').gsub('/', ''))
     end
 
     it 'extends encryptable alphabet generator' do
