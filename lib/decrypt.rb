@@ -1,5 +1,9 @@
 require './lib/enigma'
 
+if ARGV.length > 4
+  puts "Please enter correct number of arguments"
+end
+
 enigma = Enigma.new
 
 encrypted_content = File.open(ARGV[0], "r")
