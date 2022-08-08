@@ -2,9 +2,17 @@ require 'spec_helper'
 
 RSpec.describe Encryptor do 
   context 'when an encryptor is created it' do
-    let!(:encryptor) {Encryptor.new("hello world", "02715", "040895")}
+    let!(:encryptor) { Encryptor.new("hello world", "02715", "040895") { extend Encryptable } }
     it 'instantiates' do
       expect(encryptor).to be_a(Encryptor)
+    end
+
+    it 'extends encryptable helper module methods' do
+      expect(encryptor.key_generator).to be_a(String)
+      expect(encryptor.key_generator.length).to eq(5)
+      key_sum = encryptor.key_generator.split('').sum { |num| num.to_i }
+      expect(key_sum).to be <= 45
+      expect(key_sum).to be >= 0
     end
 
     it 'has details message, key, date' do
