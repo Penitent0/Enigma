@@ -5,9 +5,9 @@ module Encryptable
     key.join
   end
 
-  # def key_helper(key)
-  #   key.rjust(5, '0')[0..4]
-  # end
+  def key_helper(key)
+    key.rjust(5, '0')[0..4]
+  end
 
   def offset_generator(key, date)
     a_shift = (key[0..1].to_i + (date.to_i ** 2).to_s[-4..-1][0].to_i)
