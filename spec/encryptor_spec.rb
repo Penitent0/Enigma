@@ -35,6 +35,14 @@ RSpec.describe Encryptor do
       expect(encryptor.alphabet_generator.length).to eq(27)
     end
 
+    it 'extends encryptable offset generator method' do
+      expect(encryptor.offset_generator("02715", "040895")).to be_a(Array)
+      expect(encryptor.offset_generator("02715", "040895")[0]).to eq(3)
+      expect(encryptor.offset_generator("02715", "040895")[1]).to eq(27)
+      expect(encryptor.offset_generator("02715", "040895")[2]).to eq(73)
+      expect(encryptor.offset_generator("02715", "040895")[3]).to eq(20)
+    end
+
     it 'has details message, key, date' do
       expect(encryptor.message).to eq("hello world")
       expect(encryptor.key).to eq("02715")
