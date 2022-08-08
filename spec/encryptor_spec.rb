@@ -15,7 +15,7 @@ RSpec.describe Encryptor do
 
     it 'has encrypt method' do
       expect(encryptor.encrypt).to be_a(Hash)
-      expect(encryptor.encrypt).to eq({{encryption: "keder ohulw", key: "02715", date: "040895"}})
+      expect(encryptor.encrypt).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
     end
   end
 end
