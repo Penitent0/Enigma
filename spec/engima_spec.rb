@@ -14,6 +14,8 @@ RSpec.describe Enigma do
       enigma.encrypt("testing date and key", "12345", "110555")
       expect(enigma.date).to eq("110555")
       expect(enigma.key).to eq("12345")
+      enigma.decrypt("testing key with decrypt method", "54321")
+      expect(enigma.key).to eq("54321")
     end
 
     it 'has date instance variable and date to string method' do
@@ -47,6 +49,8 @@ RSpec.describe Enigma do
     it 'had alphabet generator' do
       expect(enigma.alphabet_generator).to be_a(Array)
       expect(enigma.alphabet_generator).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
+      expect(enigma.alphabet_generator.include?("!&?%")).to eq(false)
+      expect(enigma.alphabet_generator.length).to eq(27)
     end
 
     it 'has encrypt method' do
