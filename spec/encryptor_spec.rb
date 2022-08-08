@@ -15,6 +15,13 @@ RSpec.describe Encryptor do
       expect(key_sum).to be >= 0
     end
 
+    it 'extends encryptable alphabet generator' do
+      expect(encryptor.alphabet_generator).to be_a(Array)
+      expect(encryptor.alphabet_generator).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
+      expect(encryptor.alphabet_generator.include?("!&?%")).to eq(false)
+      expect(encryptor.alphabet_generator.length).to eq(27)
+    end
+
     it 'has details message, key, date' do
       expect(encryptor.message).to eq("hello world")
       expect(encryptor.key).to eq("02715")
