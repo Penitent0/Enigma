@@ -8,18 +8,22 @@ RSpec.describe Enigma do
       expect(enigma).to be_a(Enigma)
     end
 
+    it 'had date and key instance variables that can be read' do
+      expect(enigma.date).to eq(nil)
+      expect(enigma.key).to eq(nil)
+      enigma.encrypt("testing date and key", "12345", "110555")
+      expect(enigma.date).to eq("110555")
+      expect(enigma.key).to eq("12345")
+    end
+
     it 'has date instance variable and date to string method' do
       expect(enigma.date_to_string).to be_a(String)
       expect(enigma.date_to_string.length).to eq(6)
-      expect(enigma.date).to be_a(String)
-      expect(enigma.date.length).to eq(6)
     end
 
     it 'has random key generator' do
       expect(enigma.key_generator).to be_a(String)
       expect(enigma.key_generator.length).to eq(5)
-      expect(enigma.key).to be_a(String)
-      expect(enigma.key.length).to eq(5)
       key_sum = enigma.key_generator.split('').sum { |num| num.to_i }
       expect(key_sum).to be <= 45
       expect(key_sum).to be >= 0

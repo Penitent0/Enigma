@@ -4,8 +4,8 @@ class Enigma
               :key
 
   def initialize
-    @date = date_to_string
-    @key = key_generator
+    @date = nil
+    @key = nil
   end
 
   def key_generator
@@ -34,10 +34,12 @@ class Enigma
     message.downcase.split('')
   end
 
-  def encrypt(message, key = @key, date = @date)
+  def encrypt(message, key = key_generator, date = date_to_string)
     if message.empty? == true 
       return "Message must contain content"
-    end 
+    end
+    @date = date
+    @key = key
     offset_enumerator = offset_generator(key_helper(key), date).cycle
     letter_array = message_format(message)
     encrypted_message = ""
@@ -51,7 +53,7 @@ class Enigma
     encryption_hash = {encryption: encrypted_message, key: key_helper(key), date: date}
   end
 
-  def decrypt(message, key, date = @date)
+  def decrypt(message, key, date = date_to_string)
     if message.empty? == true 
       return "Message must contain content"
     end
