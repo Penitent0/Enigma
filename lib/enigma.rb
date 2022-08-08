@@ -3,7 +3,7 @@ class Enigma
   attr_reader :date
 
   def initialize
-    @date = Time.now
+    @date = nil
   end
 
   def key_generator
@@ -13,7 +13,7 @@ class Enigma
   end
 
   def date_to_string
-    @date.strftime('%d/%m/%y').gsub('/', '')
+    @date = Time.now.strftime('%d/%m/%y').gsub('/', '')
   end
 
   def alphabet_generator
@@ -32,7 +32,7 @@ class Enigma
     message.downcase.split('')
   end
 
-  def encrypt(message, key = key_generator, date = date_to_string)
+  def encrypt(message, key = key_generator, date = @date)
     if message.empty? == true 
       return "Message must contain content"
     end 
@@ -49,7 +49,7 @@ class Enigma
     encryption_hash = {encryption: encrypted_message, key: key_helper(key), date: date}
   end
 
-  def decrypt(message, key, date = date_to_string)
+  def decrypt(message, key, date = @date)
     if message.empty? == true 
       return "Message must contain content"
     end
