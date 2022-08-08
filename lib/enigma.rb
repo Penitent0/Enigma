@@ -1,9 +1,15 @@
 # ./enigma
 class Enigma
-  attr_reader :date
+  attr_reader :date,
+              :key,
+              :encrypted,
+              :decrypted
 
   def initialize
-    @date = Time.now
+    @date = nil
+    @key = nil
+    @encrypted = nil
+    @decrypted = nil
   end
 
   def key_generator
@@ -13,7 +19,7 @@ class Enigma
   end
 
   def date_to_string
-    @date.strftime('%d/%m/%y').gsub('/', '')
+    Time.now.strftime('%d/%m/%y').gsub('/', '')
   end
 
   def alphabet_generator
@@ -35,7 +41,9 @@ class Enigma
   def encrypt(message, key = key_generator, date = date_to_string)
     if message.empty? == true 
       return "Message must contain content"
-    end 
+    end
+    @date = date
+    @key = key
     offset_enumerator = offset_generator(key_helper(key), date).cycle
     letter_array = message_format(message)
     encrypted_message = ""
@@ -46,10 +54,12 @@ class Enigma
         encrypted_message << alphabet_generator.rotate(alphabet_generator.find_index(letter) + offset_enumerator.next).first
       end
     end
-    encryption_hash = {encryption: encrypted_message, key: key_helper(key), date: date}
+    @encrypted = {encryption: encrypted_message, key: key_helper(key), date: date}
   end
 
   def decrypt(message, key, date = date_to_string)
+    @date = date
+    @key = key
     if message.empty? == true 
       return "Message must contain content"
     end
@@ -63,7 +73,7 @@ class Enigma
         decrypted_message << alphabet_generator.rotate(alphabet_generator.find_index(letter) - offset_enumerator.next).first
       end
     end
-    decryption_hash = {decryption: decrypted_message, key: key_helper(key), date: date}
+    @decrypted = {decryption: decrypted_message, key: key_helper(key), date: date}
   end
 
   def key_helper(key)
