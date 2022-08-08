@@ -21,6 +21,13 @@ RSpec.describe Encryptor do
       expect(encryptor.date_to_string).to eq(Time.now.strftime('%d/%m/%y').gsub('/', ''))
     end
 
+    it 'extends encryptable message format method' do
+      expect(encryptor.message_format("hello world")).to be_a(Array)
+      expect(encryptor.message_format("hello world")).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
+      expect(encryptor.message_format("HELLO WORLD")).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
+      expect(encryptor.message_format("test message")).to eq(["t", "e", "s", "t", " ", "m", "e", "s", "s", "a", "g", "e"])
+    end
+
     it 'extends encryptable alphabet generator' do
       expect(encryptor.alphabet_generator).to be_a(Array)
       expect(encryptor.alphabet_generator).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
