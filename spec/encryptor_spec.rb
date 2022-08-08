@@ -44,8 +44,11 @@ RSpec.describe Encryptor do
     end
 
     it 'extends encryptable key helper method' do
+      expect(encryptor.key_helper("12345")).to be_a(String)
+      expect(encryptor.key_helper("1").length).to eq(5)
       expect(encryptor.key_helper("123456")).to eq("12345")
       expect(encryptor.key_helper("1234")).to eq("01234")
+      expect(encryptor.key_helper("1")).to eq("00001")
     end
 
     it 'has details message, key, date' do
