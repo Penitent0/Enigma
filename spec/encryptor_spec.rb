@@ -53,12 +53,10 @@ RSpec.describe Encryptor do
     end
 
     it 'has encrypt method' do
-      expect(encryptor.encrypt).to be_a(Hash)
-      expect(encryptor.encrypt).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
+      expect(encryptor.encrypt("hello world", "02715", "040895")).to be_a(Hash)
+      expect(encryptor.encrypt("hello world", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
       expect(encryptor.encrypt("HELLO WORLD", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
       expect(encryptor.encrypt("hello world!?$", "02715", "040895")).to eq({encryption: "keder ohulw!?$", key: "02715", date: "040895"})
-      expect(encryptor.encrypt("hello world", "1", "040895")).to eq({encryption: "ienrp yuslf", key: "00001", date: "040895"})
-      expect(encryptor.encrypt("", "02715", "040895")).to eq("Message must contain content")
     end
   end
 end
