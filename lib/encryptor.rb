@@ -1,5 +1,5 @@
 # ./encryptor
-require './lib/helper_module'
+require './lib/encryptable_helper'
 
 class Encryptor
   include Encryptable

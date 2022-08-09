@@ -1,7 +1,7 @@
 require 'simplecov'
 require './lib/enigma'
 require './lib/encryptor'
-require './lib/helper_module'
+require './lib/encryptable_helper'
 require './lib/decryptor'
 require './lib/enigma_helper'
 
