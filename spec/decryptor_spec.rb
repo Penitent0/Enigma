@@ -6,6 +6,8 @@ RSpec.describe Decryptor do
 
     it 'has decrypted instance variable set to nil by default' do
       expect(decryptor.decrypted).to eq(nil)
+      decryptor.decrypt("keder ohulw", "02715", "040895")
+      expect(decryptor.decrypted).to eq({decryption: "hello world", key: "02715", date: "040895"})
     end
 
     it 'extends encryptable date to string method' do
