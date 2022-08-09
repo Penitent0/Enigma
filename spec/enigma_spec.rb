@@ -8,15 +8,15 @@ RSpec.describe Enigma do
       expect(enigma).to be_a(Enigma)
     end
 
-    # it 'has date and key instance variables that can be read' do
-    #   expect(enigma.date).to eq(nil)
-    #   expect(enigma.key).to eq(nil)
-    #   enigma.encrypt("testing date and key", "12345", "110555")
-    #   expect(enigma.date).to eq("110555")
-    #   expect(enigma.key).to eq("12345")
-    #   enigma.decrypt("testing key with decrypt method", "54321")
-    #   expect(enigma.key).to eq("54321")
-    # end
+    it 'has date and key instance variables that can be read' do
+      expect(enigma.date).to eq(nil)
+      expect(enigma.key).to eq(nil)
+      enigma.encrypt("testing date and key", "12345", "110555")
+      expect(enigma.date).to eq("110555")
+      expect(enigma.key).to eq("12345")
+      enigma.decrypt("testing key with decrypt method", "54321")
+      expect(enigma.key).to eq("54321")
+    end
 
     it 'has encrypted and decrypted instance variables' do
       expect(enigma.encrypted).to eq(nil)
