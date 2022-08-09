@@ -15,7 +15,7 @@ encrypted_content = File.open(ARGV[1], "w")
 
 encrypted_content.write(enigma.encrypted[:encryption])
 
-puts "Created #{File.basename(encrypted_content)} with the key #{enigma.key} and the date #{enigma.date}"
+puts "Created #{File.basename(encrypted_content)} with the key #{enigma.key} and date #{enigma.date}"
 
 encrypted_content.close
 

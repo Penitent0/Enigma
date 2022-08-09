@@ -4,6 +4,10 @@ RSpec.describe Decryptor do
   context'when a decryptor is created it' do
     let!(:decryptor) {Decryptor.new { extend Encryptable } }
 
+    it 'instantiates' do
+      expect(decryptor).to be_a(Decryptor)
+    end
+
     it 'has decrypted instance variable set to nil by default' do
       expect(decryptor.decrypted).to eq(nil)
       decryptor.decrypt("keder ohulw", "02715", "040895")
