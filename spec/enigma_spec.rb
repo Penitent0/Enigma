@@ -18,7 +18,7 @@ RSpec.describe Enigma do
       expect(enigma.key).to eq("54321")
     end
 
-    xit 'has encrypted and decrypted instance variables' do
+    it 'has encrypted and decrypted instance variables' do
       expect(enigma.encrypted).to eq(nil)
       expect(enigma.decrypted).to eq(nil)
       enigma.encrypt("hello world", "02715", "040895")
@@ -42,7 +42,7 @@ RSpec.describe Enigma do
       expect(enigma.encrypt("hello world")).to eq({encryption: "encrypted message", key: "generated_key", date: enigma.date_to_string})
     end
 
-    xit 'has decrypt method' do 
+    it 'has decrypt method' do 
       expect(enigma.decrypt("keder ohulw", "02715", "040895")).to be_a(Hash)
       expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
       expect(enigma.decrypt("KEDER OHULW", "02715", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
