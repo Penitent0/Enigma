@@ -4,7 +4,7 @@ RSpec.describe Decryptor do
   context'when a decryptor is created it' do
     let!(:decryptor) {Decryptor.new { extend Encryptable } }
 
-    it 'has decrypted instance variable set to nil by default' do
+    xit 'has decrypted instance variable set to nil by default' do
       expect(decryptor.decrypted).to eq(nil)
     end
 
@@ -35,6 +35,14 @@ RSpec.describe Decryptor do
       expect(decryptor.key_helper("123456")).to eq("12345")
       expect(decryptor.key_helper("1234")).to eq("01234")
       expect(decryptor.key_helper("1")).to eq("00001")
+    end
+
+    xit 'has decrypt method that takes arguements' do
+      expect(decryptor.decrypt("keder ohulw", "02715", "040895")).to be_a(Hash)
+      expect(decryptor.decrypt("keder ohulw", "02715", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
+      expect(decryptor.decrypt("KEDER OHULW", "02715", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
+      expect(decryptor.decrypt("keder ohulw!?$", "02715", "040895")).to eq({decryption: "hello world!?$", key: "02715", date: "040895"})
+      expect(decryptor.decrypt("keder ohulw", "0271512345", "040895")).to eq({decryption: "hello world", key: "02715", date: "040895"})
     end
   end
 end
