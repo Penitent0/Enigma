@@ -8,15 +8,15 @@ RSpec.describe Enigma do
       expect(enigma).to be_a(Enigma)
     end
 
-    it 'has date and key instance variables that can be read' do
-      expect(enigma.date).to eq(nil)
-      expect(enigma.key).to eq(nil)
-      enigma.encrypt("testing date and key", "12345", "110555")
-      expect(enigma.date).to eq("110555")
-      expect(enigma.key).to eq("12345")
-      enigma.decrypt("testing key with decrypt method", "54321")
-      expect(enigma.key).to eq("54321")
-    end
+    # it 'has date and key instance variables that can be read' do
+    #   expect(enigma.date).to eq(nil)
+    #   expect(enigma.key).to eq(nil)
+    #   enigma.encrypt("testing date and key", "12345", "110555")
+    #   expect(enigma.date).to eq("110555")
+    #   expect(enigma.key).to eq("12345")
+    #   enigma.decrypt("testing key with decrypt method", "54321")
+    #   expect(enigma.key).to eq("54321")
+    # end
 
     it 'has encrypted and decrypted instance variables' do
       expect(enigma.encrypted).to eq(nil)
@@ -27,41 +27,6 @@ RSpec.describe Enigma do
       expect(enigma.decrypted).to be_a(Hash)
       expect(enigma.encrypted).to eq({:date=>"040895", :encryption=>"keder ohulw", :key=>"02715"})
       expect(enigma.decrypted).to eq({:date=>"040895", :decryption=>"hello world", :key=>"02715"})
-    end
-
-    it 'has date to string method' do
-      expect(enigma.date_to_string).to be_a(String)
-      expect(enigma.date_to_string.length).to eq(6)
-    end
-
-    it 'has random key generator' do
-      expect(enigma.key_generator).to be_a(String)
-      expect(enigma.key_generator.length).to eq(5)
-      key_sum = enigma.key_generator.split('').sum { |num| num.to_i }
-      expect(key_sum).to be <= 45
-      expect(key_sum).to be >= 0
-    end
-
-    it 'has message format method' do
-      expect(enigma.message_format("hello world")).to be_a(Array)
-      expect(enigma.message_format("hello world")).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
-      expect(enigma.message_format("HELLO WORLD")).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
-      expect(enigma.message_format("test message")).to eq(["t", "e", "s", "t", " ", "m", "e", "s", "s", "a", "g", "e"])
-    end
-
-    it 'has offset generator method' do
-      expect(enigma.offset_generator("02715", "040895")).to be_a(Array)
-      expect(enigma.offset_generator("02715", "040895")[0]).to eq(3)
-      expect(enigma.offset_generator("02715", "040895")[1]).to eq(27)
-      expect(enigma.offset_generator("02715", "040895")[2]).to eq(73)
-      expect(enigma.offset_generator("02715", "040895")[3]).to eq(20)
-    end
-
-    it 'had alphabet generator' do
-      expect(enigma.alphabet_generator).to be_a(Array)
-      expect(enigma.alphabet_generator).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
-      expect(enigma.alphabet_generator.include?("!&?%")).to eq(false)
-      expect(enigma.alphabet_generator.length).to eq(27)
     end
 
     it 'has encrypt method' do
