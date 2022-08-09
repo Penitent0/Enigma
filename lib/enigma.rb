@@ -17,15 +17,15 @@ class Enigma
     @decrypted = nil
   end
 
-  def encrypt(message, key = key_generator, date = date_to_string)
-    @date = date
-    @key = key_helper(key)
-    @encrypted = @encryptor.encrypt(message, key_helper(key), date)
+  def encrypt(message, msg_key = key_generator, msg_date = date_to_string)
+    @date = msg_date
+    @key = key_helper(msg_key)
+    @encrypted = @encryptor.encrypt(message, key, date)
   end
 
-  def decrypt(message, key, date = date_to_string)
-    @date = date
-    @key = key_helper(key)
-    @decrypted = @decryptor.decrypt(message, key_helper(key), date)
+  def decrypt(message, msg_key, msg_date = date_to_string)
+    @date = msg_date
+    @key = key_helper(msg_key)
+    @decrypted = @decryptor.decrypt(message, key, date)
   end
 end
