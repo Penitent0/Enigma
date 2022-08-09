@@ -1,8 +1,9 @@
 # ./enigma
-require './lib/helper_module'
+require './lib/enigma_helper'
 
 class Enigma
-  include Encryptable 
+  include Enigmable
+
   attr_reader :date,
               :key,
               :encrypted,
