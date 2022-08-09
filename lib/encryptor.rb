@@ -1,24 +1,19 @@
 # ./encryptor
 require './lib/helper_module'
+
 class Encryptor
   include Encryptable
-  attr_reader :message,
-              :key,
-              :date
-
-  def initialize(message, key, date)
-    @message = message
-    @key = key
-    @date = date
+  
+  def initialize
     @encrypted = nil
   end
 
-  def encrypt
-    if @message.empty? == true 
+  def encrypt(message, key, date)
+    if message.empty? == true 
       return "Message must contain content"
     end
-    offset_enumerator = offset_generator(key_helper(@key), @date).cycle
-    letter_array = message_format(@message)
+    offset_enumerator = offset_generator(key, date).cycle
+    letter_array = message_format(message)
     encrypted_message = ""
     letter_array.each do |letter|
       if alphabet_generator.include?(letter) == false
@@ -27,6 +22,6 @@ class Encryptor
         encrypted_message << alphabet_generator.rotate(alphabet_generator.find_index(letter) + offset_enumerator.next).first
       end
     end
-    @encrypted = {encryption: encrypted_message, key: key_helper(@key), date: @date}
+    @encrypted = {encryption: encrypted_message, key: key, date: date}
   end
 end
