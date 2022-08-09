@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Enigma do 
   context 'when an enigma is created it' do
-    let!(:enigma) { Enigma.new }
+    let!(:enigma) { Enigma.new { extend Enigmable } }
 
     it 'instantiates' do
       expect(enigma).to be_a(Enigma)

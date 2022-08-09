@@ -3,6 +3,7 @@ require './lib/enigma'
 require './lib/encryptor'
 require './lib/helper_module'
 require './lib/decryptor'
+require './lib/enigma_helper'
 
 SimpleCov.start
 
