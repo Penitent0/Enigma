@@ -2,14 +2,14 @@
 require './lib/helper_module'
 
 class Decryptor
-include Encryptable
+  include Encryptable
   attr_reader :decrypted
 
   def initialize
     @decrypted = nil
   end
 
-  def decrypt(message, key, date = date_to_string)
+  def decrypt(message, key, date)
     if message.empty? == true 
       return "Message must contain content"
     end

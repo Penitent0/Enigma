@@ -25,7 +25,7 @@ class Enigma
 
   def decrypt(message, key, date = date_to_string)
     @date = date
-    @key = key
-    @decrypted = @decryptor.decrypt(message, key, date = date_to_string)
+    @key = key_helper(key)
+    @decrypted = @decryptor.decrypt(message, key_helper(key), date)
   end
 end
