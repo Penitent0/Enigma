@@ -1,5 +1,5 @@
 # ./decryptor
-require './lib/helper_module'
+require './lib/encryptable_helper'
 
 class Decryptor
   include Encryptable
