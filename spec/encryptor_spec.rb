@@ -8,6 +8,12 @@ RSpec.describe Encryptor do
       expect(encryptor).to be_a(Encryptor)
     end
 
+    it 'has encrypted instance varibale set to nil by default' do
+      expect(encryptor.encrypted).to eq(nil)
+      encryptor.encrypt("hello world", "02715", "040895")
+      expect(encryptor.encrypted).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
+    end
+
     it 'extends encryptable key generator' do
       expect(encryptor.key_generator).to be_a(String)
       expect(encryptor.key_generator.length).to eq(5)

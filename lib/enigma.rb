@@ -10,6 +10,7 @@ class Enigma
 
   def initialize
     @encryptor = Encryptor.new
+    @decryptor = Decryptor.new
     @date = nil
     @key = nil
     @encrypted = nil
@@ -24,20 +25,7 @@ class Enigma
 
   def decrypt(message, key, date = date_to_string)
     @date = date
-    @key = key
-    if message.empty? == true 
-      return "Message must contain content"
-    end
-    offset_enumerator = offset_generator(key_helper(key), date).cycle
-    letter_array = message_format(message)
-    decrypted_message = ""
-    letter_array.each do |letter|
-      if alphabet_generator.include?(letter) == false
-        decrypted_message << letter
-      else
-        decrypted_message << alphabet_generator.rotate(alphabet_generator.find_index(letter) - offset_enumerator.next).first
-      end
-    end
-    @decrypted = {decryption: decrypted_message, key: key_helper(key), date: date}
+    @key = key_helper(key)
+    @decrypted = @decryptor.decrypt(message, key_helper(key), date)
   end
 end
