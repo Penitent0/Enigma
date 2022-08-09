@@ -29,7 +29,7 @@ I could have made better use of enumerables that would have reduced the amount o
 #
 <h3><strong>Test Driven Development</strong></h3>
 
-**Meets Expectations <--> Above Expectations** - I have 93 commits and 15 pull requests. 
+**Meets Expectations <--> Above Expectations** - I have 93 commits and 15 pull requests and 100% SimpleCov coverage.
 
 Most of my pull requests contain related work but some are general "clean up" passes that could have been done differently in a way that better follows good version control convention. 
 
