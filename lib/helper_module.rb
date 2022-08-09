@@ -1,14 +1,4 @@
 module Encryptable
-  def key_generator
-    key = []
-    5.times { key << rand(0..9).to_s }
-    key.join
-  end
-
-  def key_helper(key)
-    key.rjust(5, '0')[0..4]
-  end
-
   def offset_generator(key, date)
     a_shift = (key[0..1].to_i + (date.to_i ** 2).to_s[-4..-1][0].to_i)
     b_shift = (key[1..2].to_i + (date.to_i ** 2).to_s[-4..-1][1].to_i)
@@ -23,9 +13,5 @@ module Encryptable
 
   def alphabet_generator
     ("a".."z").to_a << " "
-  end
-
-  def date_to_string
-    Time.now.strftime('%d/%m/%y').gsub('/', '')
   end
 end
