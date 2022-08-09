@@ -11,7 +11,7 @@
 
 **Meets Expectations <--> Above Expectations** - I broke my project into 3 Classes and 2 helper modules. Each Class is between 30 and 35 lines of code. The helper modules are between 15 and 20 lines of code. 
 
-Enigma Class instantiates Encryptor and Decryptor Classes and is solely responsible for interacting with the Encrypt and Decrypt runner files. Engima includes the Enigmable helper module that contains helper methods used only Enigma.
+Enigma Class instantiates Encryptor and Decryptor Classes and is solely responsible for interacting with the Encrypt and Decrypt runner files. Engima includes the Enigmable helper module that contains helper methods used only by Enigma.
 
 Encryptor Class is instantiated by Enigma and is solely responsible for containing the functionality for the Enigma Class *#encrypt* method. Encryptor includes the Encryptable helper module that contains helper methods for functionality. Encryptor only "talks" to the Enigma Class and the Encryptable helper module.
 
