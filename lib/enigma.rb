@@ -1,5 +1,7 @@
 # ./enigma
 require './lib/enigma_helper'
+require './lib/encryptor'
+require './lib/decryptor'
 
 class Enigma
   include Enigmable
