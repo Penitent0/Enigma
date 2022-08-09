@@ -1,5 +1,7 @@
 # ./encryptor
+require './lib/helper_module'
 class Encryptor
+  include Encryptable
   attr_reader :message,
               :key,
               :date
@@ -25,6 +27,6 @@ class Encryptor
         encrypted_message << alphabet_generator.rotate(alphabet_generator.find_index(letter) + offset_enumerator.next).first
       end
     end
-    @encrypted = {decryption: decrypted_message, key: key_helper(@key), date: @date}
+    @encrypted = {encryption: encrypted_message, key: key_helper(@key), date: @date}
   end
 end
