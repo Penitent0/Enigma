@@ -19,7 +19,7 @@ class Enigma
   def encrypt(message, key = key_generator, date = date_to_string)
     @date = date
     @key = key_helper(key)
-    @encryptor.encrypt(message, key_helper(key), date)
+    @encrypted = @encryptor.encrypt(message, key_helper(key), date)
   end
 
   def decrypt(message, key, date = date_to_string)
