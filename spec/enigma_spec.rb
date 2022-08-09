@@ -2,10 +2,32 @@ require 'spec_helper'
 
 RSpec.describe Enigma do 
   context 'when an enigma is created it' do
-    let!(:enigma) { Enigma.new }
+    let!(:enigma) { Enigma.new { extend Enigmable } }
 
     it 'instantiates' do
       expect(enigma).to be_a(Enigma)
+    end
+
+    it 'extends enigmable key generator method' do
+      expect(enigma.key_generator).to be_a(String)
+      expect(enigma.key_generator.length).to eq(5)
+      key_sum = enigma.key_generator.split('').sum { |num| num.to_i }
+      expect(key_sum).to be <= 45
+      expect(key_sum).to be >= 0
+    end
+
+    it 'extends enigmable date to string method' do
+      expect(enigma.date_to_string).to be_a(String)
+      expect(enigma.date_to_string.length).to eq(6)
+      expect(enigma.date_to_string).to eq(Time.now.strftime('%d/%m/%y').gsub('/', ''))
+    end
+
+    it 'extends enigmable key helper method' do
+      expect(enigma.key_helper("12345")).to be_a(String)
+      expect(enigma.key_helper("1").length).to eq(5)
+      expect(enigma.key_helper("123456")).to eq("12345")
+      expect(enigma.key_helper("1234")).to eq("01234")
+      expect(enigma.key_helper("1")).to eq("00001")
     end
 
     it 'has date and key instance variables that can be read' do
