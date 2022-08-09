@@ -2,15 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Encryptor do 
   context 'when an encryptor is created it' do
-    let!(:encryptor) { Encryptor.new("hello world", "02715", "040895") { extend Encryptable } }
+    let!(:encryptor) { Encryptor.new { extend Encryptable } }
+
     it 'instantiates' do
       expect(encryptor).to be_a(Encryptor)
-    end
-
-    it 'has details message, key, date' do
-      expect(encryptor.message).to eq("hello world")
-      expect(encryptor.key).to eq("02715")
-      expect(encryptor.date).to eq("040895")
     end
 
     it 'extends encryptable key generator' do
@@ -58,16 +53,10 @@ RSpec.describe Encryptor do
     end
 
     it 'has encrypt method' do
-      expect(encryptor.encrypt).to be_a(Hash)
-      expect(encryptor.encrypt).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
-      new_encryptor = Encryptor.new("HELLO WORLD", "02715", "040895")
-      expect(new_encryptor.encrypt).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
-      new_encryptor = Encryptor.new("hello world!?$", "02715", "040895")
-      expect(new_encryptor.encrypt).to eq({encryption: "keder ohulw!?$", key: "02715", date: "040895"})
-      new_encryptor = Encryptor.new("hello world", "1", "040895")
-      expect(new_encryptor.encrypt).to eq({encryption: "ienrp yuslf", key: "00001", date: "040895"})
-      new_encryptor = Encryptor.new("", "02715", "040895")
-      expect(new_encryptor.encrypt).to eq("Message must contain content")
+      expect(encryptor.encrypt("hello world", "02715", "040895")).to be_a(Hash)
+      expect(encryptor.encrypt("hello world", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
+      expect(encryptor.encrypt("HELLO WORLD", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
+      expect(encryptor.encrypt("hello world!?$", "02715", "040895")).to eq({encryption: "keder ohulw!?$", key: "02715", date: "040895"})
     end
   end
 end
