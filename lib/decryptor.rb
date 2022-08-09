@@ -3,6 +3,7 @@ require './lib/helper_module'
 
 class Decryptor
 include Encryptable
+  attr_reader :decrypted
 
   def initialize
     @decrypted = nil
